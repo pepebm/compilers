@@ -9,10 +9,6 @@ class TokenType(Enum):
     VOID = 'void'
     WHILE = 'while'
 
-    # Standards
-    ID
-    NUMBER
-
     # Symbols
     PLUS = '+'
     MINUS = '-'
@@ -23,7 +19,7 @@ class TokenType(Enum):
     GREATER = '>'
     GREATEREQUAL = '>='
     EQUAL = '='
-    DEQUAL = '=='
+    ISEQUAL = '=='
     NEQUAL = '!='
     SEMICOLOM = ';'
     ENDFILE = '$'
