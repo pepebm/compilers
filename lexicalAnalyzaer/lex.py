@@ -34,7 +34,7 @@ t_RBLOCK   = r'}'
 t_ENDFILE = r'\$'
 
 t_ignore = ' \t'
-	
+# The t_[TokenName] is a syntaxis required by ply.lex
 def t_NUMBER(t):
 	r'\d+'
 	# ID that starts with numbers
@@ -76,20 +76,14 @@ def t_comments(t):
 
 def t_error(t):
 	errorline = t.lexer.lineno
+	# ply.lex puts everything in one line so we need to split it
+	# to get the correct pos of the error
 	line = t.lexer.lexdata.split('\n')[errorline - 1]
 	tabPos = line.find(t.lexer.lexdata[t.lexer.lexpos])
 	print("Syntax Error @ line " + str(errorline))
 	print(line)
 	print(' ' * tabPos + '^')
 	t.lexer.skip(1)
-
-def p_error(p):
-    if p:
-         print("Syntax error at token", p.type)
-         # Just discard the token and tell the parser it's okay.
-         parser.errok()
-    else:
-         print("Syntax error at EOF")
 
 # Instantiate the lexer object
 lexer = lex.lex()
