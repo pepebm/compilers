@@ -72,11 +72,24 @@ def t_comments(t):
     # Regex to identify comment block, do nothing
     # src: https://stackoverflow.com/questions/16160190/regular-expression-to-find-c-style-block-comments
 	r'\/\*(\*(?!\/)|[^*])*\*\/'
-	pass
+	t.lexer.lineno += t.value.count('\n')
 
 def t_error(t):
-	print("Lexical error: " + str(t.value[0]))
+	errorline = t.lexer.lineno
+	line = t.lexer.lexdata.split('\n')[errorline - 1]
+	tabPos = line.find(t.lexer.lexdata[t.lexer.lexpos])
+	print("Syntax Error @ line " + str(errorline))
+	print(line)
+	print(' ' * tabPos + '^')
 	t.lexer.skip(1)
+
+def p_error(p):
+    if p:
+         print("Syntax error at token", p.type)
+         # Just discard the token and tell the parser it's okay.
+         parser.errok()
+    else:
+         print("Syntax error at EOF")
 
 # Instantiate the lexer object
 lexer = lex.lex()
