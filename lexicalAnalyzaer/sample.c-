@@ -3,10 +3,9 @@
 */
 void main (int argc) {
     int a, int b;
-    a = 10;
+    a = r10;
     b = -1;
-    int c = (a - b) * a;
+    int c = (2a - b) * a;
     int x[10];
-    // Esto es otro comentario
     return 0;
 }

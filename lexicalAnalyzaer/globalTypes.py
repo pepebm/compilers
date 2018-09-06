@@ -1,33 +1,7 @@
+# This file only contains ENDOFFILE so that the
+# test script givin by the profesor can run without error
+# but everything happens in lexer.py & lex.py (with has the token)
 from enum import Enum
 
 class TokenType(Enum):
-    # Reserved Words
-    IF = 'if'
-    ELSE = 'else'
-    INT = 'int'
-    RETURN = 'return'
-    VOID = 'void'
-    WHILE = 'while'
-
-    # Symbols
-    PLUS = '+'
-    MINUS = '-'
-    TIMES = '*'
-    DIVIDE = '/'
-    LESS = '<'
-    LESSEQUAL = '<='
-    GREATER = '>'
-    GREATEREQUAL = '>='
-    EQUAL = '='
-    ISEQUAL = '=='
-    NEQUAL = '!='
-    SEMICOLOM = ';'
     ENDFILE = '$'
-    COMMA = ','
-    LPAREN = '('
-    RPAREN = ')'
-    LBRACKET = '['
-    RBRACKET = ']'
-    OPENBLOCK = '{'
-    CLOSEBLOCK = '}'
-    
