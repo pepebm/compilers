@@ -1,5 +1,4 @@
 from ply import *
-import pry
 # This code was made with ply lexer based on the documentation
 # src: https://www.dabeaz.com/ply/ply.html#ply_nn2
 
@@ -7,7 +6,7 @@ import pry
 tokens = (
     # keywords
 	'else', 'if', 'int', 'return', 'void', 'while', 
-    # symbols
+    # symbols & others
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LESS', 'LE', 
     'GREATER', 'GE', 'EQUAL', 'COMPARE', 'NE', 'SEMICOLON',
     'COMMA', 'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
@@ -34,11 +33,11 @@ t_RBLOCK   = r'}'
 t_ENDFILE = r'\$'
 
 t_ignore = ' \t'
-# The t_[TokenName] is a syntaxis required by ply.lex
+# The t_TokenName is a syntaxis required by ply.lex
 def t_NUMBER(t):
 	r'\d+'
 	# ID that starts with numbers
-	if t.lexer.lexdata[t.lexpos+len(t.value)].isalpha():
+	if t.lexer.lexdata[t.lexpos + len(t.value)].isalpha():
 		t_error(t)
 	t.value = int(t.value)
 	return t
@@ -80,10 +79,10 @@ def t_error(t):
 	# to get the correct pos of the error
 	line = t.lexer.lexdata.split('\n')[errorline - 1]
 	tabPos = line.find(t.lexer.lexdata[t.lexer.lexpos])
-	print("Syntax Error @ line " + str(errorline))
+	print("Syntax Error @ line " + str(errorline) + ":" + str(tabPos))
 	print(line)
 	print(' ' * tabPos + '^')
 	t.lexer.skip(1)
 
-# Instantiate the lexer object
+# Instantiate the lexer object, we'll import this object in lexer.py
 lexer = lex.lex()
