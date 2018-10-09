@@ -176,11 +176,11 @@ def p_simple_expression_2(p):
 
 def p_relop(p):
 	'''relop : LESS 
-			| LESSEQUAL
+			| LE
 			| GREATER
-			| GREATEREQUAL
-			| DEQUAL
-			| DISTINT
+			| GE
+			| NE
+			| INT
 	'''
 	pass
 

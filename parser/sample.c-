@@ -2,7 +2,8 @@
     de varias lineas
 */
 void main (int argc) {
-    int a, int b;
+    int a;
+    int b;
     a = 10;
     b = -1;
     int c = (a - b) * a;

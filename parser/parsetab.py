@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMMA COMPARE DIVIDE ENDFILE EQUAL GE GREATER ID LBLOCK LBRACKET LE LESS LPAREN MINUS NE NUMBER PLUS RBLOCK RBRACKET RPAREN SEMICOLON TIMES else if int return void whileexpression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorfactor : NUMBERfactor : LPAREN expression RPAREN'
+_lr_signature = 'COMMA COMPARE DIVIDE ELSE ENDFILE EQUAL GE GREATER ID IF INT LBLOCK LBRACKET LE LESS LPAREN MINUS NE NUMBER PLUS RBLOCK RBRACKET RETURN RPAREN SEMICOLON TIMES VOID WHILEexpression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorprogram : declaration_listdeclaration_list : declaration_list declarationdeclaration_list : declarationdeclaration : var_declaration\n\t\t\t\t  | fun_declarationvar_declaration : type_specifier ID SEMICOLONvar_declaration : type_specifier ID LBRACKET NUMBER RBRACKET SEMICOLONfun_declaration : type_specifier ID LPAREN params RPAREN compount_stmttype_specifier : INTtype_specifier : VOIDparams : param_listparams : VOIDparam_list : param_list COMMA paramparam_list : paramparam_list : emptyparam : type_specifier IDparam : type_specifier ID LBRACKET RBRACKETcompount_stmt : LBLOCK local_declarations statement_list RBLOCKlocal_declarations : local_declarations var_declarationlocal_declarations : emptystatement_list : statement_list statementstatement_list : emptystatement : expression_stmt\n\t\t\t\t| compount_stmt\n\t\t\t\t| selection_stmt\n\t\t\t\t| iteration_stmt\n\t\t\t\t| return_stmt\n\texpression_stmt : expression SEMICOLONexpression_stmt : SEMICOLONselection_stmt : IF LPAREN expression RPAREN statementselection_stmt : IF LPAREN expression RPAREN statement ELSE statementiteration_stmt : WHILE LPAREN expression RPAREN statementreturn_stmt : RETURN SEMICOLONreturn_stmt : RETURN expression SEMICOLONexpression : var EQUAL expressionexpression : simple_expressionvar : IDvar : ID LBRACKET expression RBRACKETsimple_expression : additive_expression relop additive_expressionsimple_expression : additive_expressionrelop : LESS \n\t\t\t| LE\n\t\t\t| GREATER\n\t\t\t| GE\n\t\t\t| NE\n\t\t\t| INT\n\tadditive_expression : additive_expression addop termadditive_expression : termaddop : PLUS \n\t\t\t| MINUS\n\tterm : term mulop factorterm : factormulop : \tTIMES\n\t\t\t\t| DIVIDE\n\tfactor : LPAREN expression RPARENfactor : varfactor : callfactor : NUMBERcall : ID LPAREN args RPARENargs : args_list\n\t\t\t| empty\n\targs_list : args_list COMMA expressionargs_list : expressionempty :'
     
-_lr_action_items = {'DIVIDE':([1,4,5,11,12,13,14,15,],[-7,9,-6,-8,9,9,-5,-4,]),'RPAREN':([1,4,5,6,11,12,13,14,15,],[-7,-3,-6,11,-8,-2,-1,-5,-4,]),'LPAREN':([0,2,7,8,9,10,],[2,2,2,2,2,2,]),'$end':([1,3,4,5,11,12,13,14,15,],[-7,0,-3,-6,-8,-2,-1,-5,-4,]),'NUMBER':([0,2,7,8,9,10,],[1,1,1,1,1,1,]),'PLUS':([1,3,4,5,6,11,12,13,14,15,],[-7,8,-3,-6,8,-8,-2,-1,-5,-4,]),'MINUS':([1,3,4,5,6,11,12,13,14,15,],[-7,7,-3,-6,7,-8,-2,-1,-5,-4,]),'TIMES':([1,4,5,11,12,13,14,15,],[-7,10,-6,-8,10,10,-5,-4,]),}
+_lr_action_items = {'INT':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,17,-56,-61,-5,-4,-52,-60,-43,-64,]),'$end':([1,2,3,4,5,6,7,8,10,30,31,32,33,34,40,41,42,43,44,45,46,47,],[-3,-57,-62,-63,-61,-42,-45,0,-41,-56,-61,-5,-4,-40,-52,-53,-44,-2,-1,-60,-43,-64,]),'MINUS':([1,2,3,4,5,6,7,8,10,29,30,31,32,33,34,35,38,40,41,42,43,44,45,46,47,49,],[-3,-57,-62,-63,-61,-42,23,27,-41,27,-56,-61,-5,-4,27,27,27,-52,-53,23,-2,-1,-60,-43,-64,27,]),'DIVIDE':([1,2,3,4,5,6,30,31,32,33,40,41,43,44,45,46,47,],[12,-57,-62,-63,-61,-42,-56,-61,-5,-4,12,12,12,12,-60,-43,-64,]),'RBRACKET':([1,2,3,4,5,6,7,10,30,31,32,33,34,35,40,41,42,43,44,45,46,47,],[-3,-57,-62,-63,-61,-42,-45,-41,-56,-61,-5,-4,-40,46,-52,-53,-44,-2,-1,-60,-43,-64,]),'LESS':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,20,-56,-61,-5,-4,-52,-60,-43,-64,]),'RPAREN':([1,2,3,4,5,6,7,10,16,29,30,31,32,33,34,36,37,38,39,40,41,42,43,44,45,46,47,49,],[-3,-57,-62,-63,-61,-42,-45,-41,-69,45,-56,-61,-5,-4,-40,-66,47,-68,-65,-52,-53,-44,-2,-1,-60,-43,-64,-67,]),'GE':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,22,-56,-61,-5,-4,-52,-60,-43,-64,]),'ID':([0,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,48,],[6,6,6,6,6,6,6,6,-51,-48,6,-46,6,-49,-55,-47,-50,-54,6,6,6,]),'TIMES':([1,2,3,4,5,6,30,31,32,33,40,41,43,44,45,46,47,],[13,-57,-62,-63,-61,-42,-56,-61,-5,-4,13,13,13,13,-60,-43,-64,]),'GREATER':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,18,-56,-61,-5,-4,-52,-60,-43,-64,]),'NUMBER':([0,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,48,],[4,4,4,4,4,4,4,4,-51,-48,4,-46,4,-49,-55,-47,-50,-54,4,4,4,]),'LBRACKET':([6,],[15,]),'LE':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,24,-56,-61,-5,-4,-52,-60,-43,-64,]),'EQUAL':([5,6,46,],[14,-42,-43,]),'LPAREN':([0,6,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,48,],[9,16,9,9,9,9,9,9,9,-51,-48,9,-46,9,-49,-55,-47,-50,-54,9,9,9,]),'NE':([1,2,3,4,5,6,7,30,31,32,33,40,45,46,47,],[-53,-57,-62,-63,-61,-42,25,-56,-61,-5,-4,-52,-60,-43,-64,]),'PLUS':([1,2,3,4,5,6,7,8,10,29,30,31,32,33,34,35,38,40,41,42,43,44,45,46,47,49,],[-3,-57,-62,-63,-61,-42,26,28,-41,28,-56,-61,-5,-4,28,28,28,-52,-53,26,-2,-1,-60,-43,-64,28,]),'COMMA':([1,2,3,4,5,6,7,10,30,31,32,33,34,38,39,40,41,42,43,44,45,46,47,49,],[-3,-57,-62,-63,-61,-42,-45,-41,-56,-61,-5,-4,-40,-68,48,-52,-53,-44,-2,-1,-60,-43,-64,-67,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,2,],[3,6,]),'term':([0,2,7,8,],[4,4,12,13,]),'factor':([0,2,7,8,9,10,],[5,5,5,5,14,15,]),}
+_lr_goto_items = {'addop':([7,42,],[19,19,]),'empty':([16,],[36,]),'term':([0,9,14,15,16,19,21,27,28,48,],[1,1,1,1,1,40,41,43,44,1,]),'relop':([7,],[21,]),'factor':([0,9,11,12,13,14,15,16,19,21,27,28,48,],[2,2,30,32,33,2,2,2,2,2,2,2,2,]),'call':([0,9,11,12,13,14,15,16,19,21,27,28,48,],[3,3,3,3,3,3,3,3,3,3,3,3,3,]),'additive_expression':([0,9,14,15,16,21,48,],[7,7,7,7,7,42,7,]),'args':([16,],[37,]),'expression':([0,9,14,15,16,48,],[8,29,34,35,38,49,]),'var':([0,9,11,12,13,14,15,16,19,21,27,28,48,],[5,5,31,31,31,5,5,5,31,31,31,31,5,]),'mulop':([1,40,41,43,44,],[11,11,11,11,11,]),'simple_expression':([0,9,14,15,16,48,],[10,10,10,10,10,10,]),'args_list':([16,],[39,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,12 +27,73 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression PLUS term','expression',3,'p_expression_plus','test.py',9),
-  ('expression -> expression MINUS term','expression',3,'p_expression_minus','test.py',13),
-  ('expression -> term','expression',1,'p_expression_term','test.py',17),
-  ('term -> term TIMES factor','term',3,'p_term_times','test.py',21),
-  ('term -> term DIVIDE factor','term',3,'p_term_div','test.py',25),
-  ('term -> factor','term',1,'p_term_factor','test.py',29),
-  ('factor -> NUMBER','factor',1,'p_factor_num','test.py',33),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','test.py',37),
+  ('expression -> expression PLUS term','expression',3,'p_expression_plus','test.py',10),
+  ('expression -> expression MINUS term','expression',3,'p_expression_minus','test.py',14),
+  ('expression -> term','expression',1,'p_expression_term','test.py',18),
+  ('term -> term TIMES factor','term',3,'p_term_times','test.py',22),
+  ('term -> term DIVIDE factor','term',3,'p_term_div','test.py',26),
+  ('program -> declaration_list','program',1,'p_program','test.py',30),
+  ('declaration_list -> declaration_list declaration','declaration_list',2,'p_declaration_list_1','test.py',34),
+  ('declaration_list -> declaration','declaration_list',1,'p_declaration_list_2','test.py',39),
+  ('declaration -> var_declaration','declaration',1,'p_declaration','test.py',43),
+  ('declaration -> fun_declaration','declaration',1,'p_declaration','test.py',44),
+  ('var_declaration -> type_specifier ID SEMICOLON','var_declaration',3,'p_var_declaration_1','test.py',48),
+  ('var_declaration -> type_specifier ID LBRACKET NUMBER RBRACKET SEMICOLON','var_declaration',6,'p_var_declaration_2','test.py',52),
+  ('fun_declaration -> type_specifier ID LPAREN params RPAREN compount_stmt','fun_declaration',6,'p_fun_declaration','test.py',56),
+  ('type_specifier -> INT','type_specifier',1,'p_type_specifier_1','test.py',60),
+  ('type_specifier -> VOID','type_specifier',1,'p_type_specifier_2','test.py',64),
+  ('params -> param_list','params',1,'p_params_1','test.py',68),
+  ('params -> VOID','params',1,'p_params_2','test.py',72),
+  ('param_list -> param_list COMMA param','param_list',3,'p_param_list_1','test.py',76),
+  ('param_list -> param','param_list',1,'p_param_list_2','test.py',80),
+  ('param_list -> empty','param_list',1,'p_param_list_3','test.py',84),
+  ('param -> type_specifier ID','param',2,'p_param_1','test.py',88),
+  ('param -> type_specifier ID LBRACKET RBRACKET','param',4,'p_param_2','test.py',92),
+  ('compount_stmt -> LBLOCK local_declarations statement_list RBLOCK','compount_stmt',4,'p_compount_stmt','test.py',96),
+  ('local_declarations -> local_declarations var_declaration','local_declarations',2,'p_local_declarations_1','test.py',100),
+  ('local_declarations -> empty','local_declarations',1,'p_local_declarations_2','test.py',104),
+  ('statement_list -> statement_list statement','statement_list',2,'p_statement_list_1','test.py',108),
+  ('statement_list -> empty','statement_list',1,'p_statement_list_2','test.py',112),
+  ('statement -> expression_stmt','statement',1,'p_statement','test.py',116),
+  ('statement -> compount_stmt','statement',1,'p_statement','test.py',117),
+  ('statement -> selection_stmt','statement',1,'p_statement','test.py',118),
+  ('statement -> iteration_stmt','statement',1,'p_statement','test.py',119),
+  ('statement -> return_stmt','statement',1,'p_statement','test.py',120),
+  ('expression_stmt -> expression SEMICOLON','expression_stmt',2,'p_expression_stmt_1','test.py',125),
+  ('expression_stmt -> SEMICOLON','expression_stmt',1,'p_expression_stmt_2','test.py',129),
+  ('selection_stmt -> IF LPAREN expression RPAREN statement','selection_stmt',5,'p_selection_stmt_1','test.py',133),
+  ('selection_stmt -> IF LPAREN expression RPAREN statement ELSE statement','selection_stmt',7,'p_selection_stmt_2','test.py',137),
+  ('iteration_stmt -> WHILE LPAREN expression RPAREN statement','iteration_stmt',5,'p_iteration_stmt','test.py',141),
+  ('return_stmt -> RETURN SEMICOLON','return_stmt',2,'p_return_stmt_1','test.py',145),
+  ('return_stmt -> RETURN expression SEMICOLON','return_stmt',3,'p_return_stmt_2','test.py',149),
+  ('expression -> var EQUAL expression','expression',3,'p_expression_1','test.py',153),
+  ('expression -> simple_expression','expression',1,'p_expression_2','test.py',157),
+  ('var -> ID','var',1,'p_var_1','test.py',161),
+  ('var -> ID LBRACKET expression RBRACKET','var',4,'p_var_2','test.py',165),
+  ('simple_expression -> additive_expression relop additive_expression','simple_expression',3,'p_simple_expression_1','test.py',169),
+  ('simple_expression -> additive_expression','simple_expression',1,'p_simple_expression_2','test.py',173),
+  ('relop -> LESS','relop',1,'p_relop','test.py',178),
+  ('relop -> LE','relop',1,'p_relop','test.py',179),
+  ('relop -> GREATER','relop',1,'p_relop','test.py',180),
+  ('relop -> GE','relop',1,'p_relop','test.py',181),
+  ('relop -> NE','relop',1,'p_relop','test.py',182),
+  ('relop -> INT','relop',1,'p_relop','test.py',183),
+  ('additive_expression -> additive_expression addop term','additive_expression',3,'p_additive_expression_1','test.py',188),
+  ('additive_expression -> term','additive_expression',1,'p_additive_expression_2','test.py',192),
+  ('addop -> PLUS','addop',1,'p_addop','test.py',196),
+  ('addop -> MINUS','addop',1,'p_addop','test.py',197),
+  ('term -> term mulop factor','term',3,'p_term_1','test.py',202),
+  ('term -> factor','term',1,'p_term_2','test.py',206),
+  ('mulop -> TIMES','mulop',1,'p_mulop','test.py',210),
+  ('mulop -> DIVIDE','mulop',1,'p_mulop','test.py',211),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_1','test.py',216),
+  ('factor -> var','factor',1,'p_factor_2','test.py',220),
+  ('factor -> call','factor',1,'p_factor_3','test.py',224),
+  ('factor -> NUMBER','factor',1,'p_factor_4','test.py',228),
+  ('call -> ID LPAREN args RPAREN','call',4,'p_call','test.py',232),
+  ('args -> args_list','args',1,'p_args','test.py',236),
+  ('args -> empty','args',1,'p_args','test.py',237),
+  ('args_list -> args_list COMMA expression','args_list',3,'p_args_list_1','test.py',242),
+  ('args_list -> expression','args_list',1,'p_args_list_2','test.py',246),
+  ('empty -> <empty>','empty',0,'p_empty','test.py',250),
 ]
