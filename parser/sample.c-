@@ -1,0 +1,15 @@
+/* comentario
+    de varias lineas
+*/
+void main (int argc) {
+    int a, int b;
+    a = 10;
+    b = -1;
+    int c = (a - b) * a;
+    int x[10];
+    return 0;
+}
+
+int fac(int a, int b){
+    return a * b;
+} 
