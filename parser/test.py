@@ -1,30 +1,13 @@
-# Yacc example
+# parser
 import ply.yacc as yacc
+# get params from cli
 import sys
+from treelib import Node, Tree
+# tokens info
 from lex import tokens
-# Get the token map from the lexer.  This is required.
 import lex
+
 import pry
-
-def p_expression_plus(p):
-    'expression : expression PLUS term'
-    p[0] = p[1] + p[3]
-
-def p_expression_minus(p):
-    'expression : expression MINUS term'
-    p[0] = p[1] - p[3]
-
-def p_expression_term(p):
-    'expression : term'
-    p[0] = p[1]
-
-def p_term_times(p):
-    'term : term TIMES factor'
-    p[0] = p[1] * p[3]
-
-def p_term_div(p):
-    'term : term DIVIDE factor'
-    p[0] = p[1] / p[3]
 
 def p_program(p):
 	'program : declaration_list'
@@ -32,7 +15,6 @@ def p_program(p):
 
 def p_declaration_list_1(p):
 	'declaration_list : declaration_list declaration'
-	 #p[0] = p[1] + p[2]  
 	pass
 
 def p_declaration_list_2(p):
@@ -181,6 +163,7 @@ def p_relop(p):
 			| GE
 			| NE
 			| INT
+			| COMPARE
 	'''
 	pass
 
