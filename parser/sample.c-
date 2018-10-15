@@ -1,16 +1,17 @@
-/* comentario
-    de varias lineas
+/* 
+    Un programa para realizar el  
+    algoritmo de Euclides para calcular mcd 
 */
-void main (int argc) {
-    int a;
-    int b;
-    a = 10r;
-    b = -1;
-    int c = (a - b) * a;
-    int x[10];
-    return 0;
+int gcd(int u, int v) {
+    if (v == 0) return u;
+    else return gcd(v ,u-u/v*v);
+    /* u-u/v*v == u mod v */
 }
 
-int fac(int a, int b){
-    return a * b;
-} 
+void main(void)
+{   int x;
+    int y;
+    x = input();
+    y = input();
+    output( gcd(x,y) );~
+}
