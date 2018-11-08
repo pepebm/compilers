@@ -1,4 +1,5 @@
-from par import *
+from par import parser
+import pry
 
 def globales(prog, pos, long):
     global programa
@@ -13,8 +14,11 @@ def printAST(lvl, count):
         for idx, l in enumerate(lvl):
             if type(l) is tuple or type(l) is str:
                 if len(lvl) > 1:
-                    if idx < 1: 
-                        print('|', '-' * count, lvl[0]) if len(lvl) == 2 and type(lvl[1]) is str else print('|', '-' * count, lvl[0])
+                    if idx < 1:
+                        if len(lvl) == 2 and type(lvl[1]) is str:
+                            print('|', '-' * count, lvl[0])
+                        else: 
+                            print('|', '-' * count, lvl[0])
                     elif type(l) is str: 
                         print('|', '-' * count, l)
                 printAST(l, count + 1)
