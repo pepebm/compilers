@@ -1,5 +1,4 @@
 from par import parser
-import pry
 
 def globales(prog, pos, long):
     global programa
