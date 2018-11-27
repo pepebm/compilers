@@ -1,5 +1,4 @@
 from sys import exit
-import pry
 # Globals
 tables, values, current, n = [], [], 0, 0
 
